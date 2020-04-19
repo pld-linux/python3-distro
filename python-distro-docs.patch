@@ -1,0 +1,15 @@
+--- distro-1.5.0/docs/conf.py.orig	2020-03-30 23:10:27.000000000 +0200
++++ distro-1.5.0/docs/conf.py	2020-04-19 12:21:54.228345350 +0200
+@@ -49,11 +49,7 @@
+ source_encoding = 'utf-8'
+ 
+ # The master toctree document.
+-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+-if on_rtd:
+-    master_doc = 'index'
+-else:
+-    master_doc = 'docs/index'
++master_doc = 'index'
+ 
+ # General information about the project.
+ project = u'distro'
