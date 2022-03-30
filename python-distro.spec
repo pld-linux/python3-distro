@@ -10,7 +10,7 @@ Summary:	An OS platform information API
 Summary(pl.UTF-8):	API do intermacji o platformie systemu operacyjnego
 Name:		python-%{module}
 Version:	1.5.0
-Release:	4
+Release:	5
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://github.com/nir0s/distro/archive/v%{version}/%{module}-%{version}.tar.gz
