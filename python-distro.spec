@@ -124,9 +124,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%if %{with python2}
 %doc CHANGELOG.md CONTRIBUTORS.md LICENSE README.md
 %{py_sitescriptdir}/distro.py[co]
 %{py_sitescriptdir}/distro-%{version}-py*.egg-info
+%endif
 
 %if %{with python3}
 %files -n python3-%{module}
