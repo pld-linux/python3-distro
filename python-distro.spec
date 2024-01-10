@@ -9,13 +9,13 @@
 Summary:	An OS platform information API
 Summary(pl.UTF-8):	API do intermacji o platformie systemu operacyjnego
 Name:		python-%{module}
-Version:	1.5.0
-Release:	5
+# keep 1.6.x here for python2 support
+Version:	1.6.0
+Release:	1
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://github.com/nir0s/distro/archive/v%{version}/%{module}-%{version}.tar.gz
-# Source0-md5:	da1cab49e8aad7bd6ae5c9f66657bd2e
-Patch0:		%{name}-docs.patch
+# Source0-md5:	50fbf6f3f123747a438c2749e9d903eb
 URL:		https://github.com/nir0s/distro
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
@@ -34,7 +34,8 @@ BuildRequires:	python3-pytest
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
-BuildRequires:	sphinx-pdg >= 1.1
+BuildRequires:	python3 >= 1:3.6
+BuildRequires:	sphinx-pdg-3 >= 2
 %endif
 Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
@@ -83,13 +84,13 @@ Dokumentacja API modułu Pythona distro.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
 
 %build
 %if %{with python2}
 %py_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python} -m pytest tests
 %endif
 %endif
@@ -98,12 +99,13 @@ Dokumentacja API modułu Pythona distro.
 %py3_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python3} -m pytest tests
 %endif
 %endif
 
 %if %{with doc}
-sphinx-build -b html docs docs/_build/html
+sphinx-build-3 -b html docs docs/_build/html
 %endif
 
 %install
